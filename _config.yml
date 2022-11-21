@@ -1,8 +1,8 @@
-title: 아니 웨 안 돼?
-description: 나애 화나는 퍼스트 깃헙 아이오
+title: 개발 블로그
+description: 열심히 할게요
 theme: just-the-docs
 
 url: https://sseung416.github.com
 
 aux_links:
-  Template Repository: https://github.com/just-the-docs/just-the-docs-template
+  github: https://github.com/sseung416
