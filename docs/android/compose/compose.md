@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Compose
-parent: Android
+parent: ../Android
 ---
 
 # Compose
