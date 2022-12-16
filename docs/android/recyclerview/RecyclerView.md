@@ -1,7 +1,7 @@
 ---
 layout: default
 title: RecyclerView
-parent: ../Android
+parent: Android
 ---
 
 # RecyclerView
