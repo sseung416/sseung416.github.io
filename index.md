@@ -4,7 +4,7 @@ layout: default
 nav-order: 2
 ---
 
-안녕하세요 ^^
+열공하자
 
 ---
 
