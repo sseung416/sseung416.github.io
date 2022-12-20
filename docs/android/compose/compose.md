@@ -6,6 +6,12 @@ parent: Android
 
 # Compose
 
+- 개념
+- Lifecycle (+ keys)
+- State와 상태 호이스팅, remember
+
+---
+
 ## [개념](https://developer.android.com/jetpack/compose/mental-model#any-order)
 
 ### 선언형 UI
@@ -24,6 +30,21 @@ Compose는 위젯이 대부분 Stateless 상태로, setter/getter 함수 뿐만 
 - **매우 자주 실행될 수 있음**
 <br/>경우에 따라 UI 애니메이션의 모든 프레임에서 실행될 수 있음. 따라서 비용이 많이 드는 작업을 실행할 때는 mutableStateof나 LiveData를 사용해 다른 스레드에서 작업하도록 해야 함.
 
+
+### Compose의 장단점
+
+컴포즈를 직접 사용하면서 느낀 장단점
+
+장점
+- 확실히 재사용성이 높아진다
+- XML과 코틀린 코드 상 이동이 없어 번거로움이 줄었다
+- 빌드 속도가 빨라진다고 하네요 (체감하진 못함)
+
+단점
+- 익숙하지 않은 것의 러닝커브: 기존 ConstraintLayout에 절여진 내 뇌가 Row, Column에 익숙해지기에는 많은 시간이 걸렸다.. 
+- LiveEdit 기능.. 라이브가 맞나요? : 느리고 반영하려면 계속해서 리빌드 해줘야한다는 점이 불편하다
+- Compose를 지원하지 않는 라이브러리들
+- drawable resource의 부재: selector 등과 같은 경우, 클릭 여부에 따라 직접적으로 drawable을 계속해서 바꿔줘야 한다 (여기서 신선한 충격을 맛봄)
 
 ---
 
@@ -115,7 +136,8 @@ fun MoviesScreen(movies: List<Movie>) {
 
 XML UI를 사용할 때는 뷰에 LiveData를 연결해주어서 데이터가 변경될때마다 즉각적으로 뷰에 반영해주었다면,  
 Composable은 선언적 UI라 한 번 코드를 실행 후에는 자동으로 데이터를 업데이트 하지 못한다!  
-따라서 Composable를 업데이트 하려면 동일한 Composable를 한 번 더 출력해야 한다.
+수정하면 Exception이 뜨면서 앱이 종료된다!  
+따라서 Composable를 업데이트 하려면 동일한 Composable를 한 번 더 출력해야 한다!
 
 ### Stateful vs Stateless
 
@@ -134,9 +156,23 @@ Composable을 stateless로 만들기 위해 컴포저블의 호출자를 옮기�
 **언제 사용해야 할까?**  
 시간이 오래 걸리는 비용이 큰 작업을 수행해야 할 때나 recomposition 상태가 되어도 데이터를 보존해야할 때, remember를 활용하면 좋음.
 
+### MutableStateOf<T>
+
+```kotlin
+@Composable
+fun RememberTest() {
+    var count by remember { mutableStateOf(0) }
+
+    Box(modifier = Modifier.fillMaxSize()) {
+        Button(onClick = { count++ }, modifier = Modifier.align(Alignment.Center)) {
+            Text(text = "Clicked $count")
+        }
+    }
+}
+```
+
 
 ---
-
 
 
 ## [Icon vs Image](https://stackoverflow.com/questions/69349400/what-is-the-difference-between-an-icon-and-an-image-in-android-jetpack-compose)
@@ -151,6 +187,7 @@ Composable을 stateless로 만들기 위해 컴포저블의 호출자를 옮기�
 
 
 ---
+
 ## ToggleButton 만들기
 
 checked에 따라 비교하여 직접 Drawable를 넣어줘야 한다.
@@ -178,41 +215,3 @@ private fun PauseAndStartToggleButton(
 ```
 
 ---
-
-## [Compose로 ConstraintLayout 구현하기](https://developer.android.com/jetpack/compose/layouts/constraintlayout?hl=ko)
-
-XML 방식으로 레이아웃을 구성할 때와 다르게, Compose는 여러 개의 뷰를 중첩하더라도 성능상 문제 없다.  
-하지만 코드 가독성을 위해서나 가이드라인, 체인 등 ConstraintLayout만의 기능이 필요할 때 사용한다.  
-
-
-> 기본 compose library와 version이 다르니 주의하기~
-
-```gradle
-implementation "androidx.constraintlayout:constraintlayout-compose:1.0.1"
-```
-
-```kotlin
-fun MyConstraintLayout() {
-    ConstraintLayout {
-        val (button, text) = createRefs()
-
-        Button(
-            onClick = {}, 
-            modifier = Modifier.constrainAs(button) {
-                top.linkTo(parent.top)
-                start.linkTo(parent.start)
-            }
-        ) {
-            Text(text = "button")
-        }
-
-        Text(
-            text = "text"
-            modifier = Modifier.constrainAs(text) {
-                top.linkTo(button.top)
-                start.linkTo(button.start)
-            }
-        ) 
-    }
-}
-```
