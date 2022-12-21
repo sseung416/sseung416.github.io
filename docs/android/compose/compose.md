@@ -154,14 +154,20 @@ Composable을 stateless로 만들기 위해 컴포저블의 호출자를 옮기�
 > remember은 객체를 해당 composition에 저장하고, remember를 호출한 composable이 composition에서 삭제되면 그 객체를 잊음.
 
 **언제 사용해야 할까?**  
-시간이 오래 걸리는 비용이 큰 작업을 수행해야 할 때나 recomposition 상태가 되어도 데이터를 보존해야할 때, remember를 활용하면 좋음.
+시간이 오래 걸리는 비용이 큰 작업을 수행해야 할 때나 recomposition 상태가 되어도 데이터를 보존해야하는 경우(버튼을 클릭했을 때 ripple 변경이나 다이얼로그 표시/숨김 등..), remember 변수를 사용에 처리하면 좋음.
 
-### MutableStateOf<T>
+```kotlin
+var count by remember { mutableStateOf(0) }
+```
+
+하지만 remember 변수는 화면 회전이나 다시 그려지는 configure change의 상황이 발생하면 값이 유지되지 않기 때문에 실제 코드에서 사용할 때는 remeberSaveable 변수를 사용해 구현해야한다.
+
+<!-- ### MutableStateOf<T> -->
 
 ```kotlin
 @Composable
 fun RememberTest() {
-    var count by remember { mutableStateOf(0) }
+    var count by remeberSaveable { mutableStateOf(0) }
 
     Box(modifier = Modifier.fillMaxSize()) {
         Button(onClick = { count++ }, modifier = Modifier.align(Alignment.Center)) {
