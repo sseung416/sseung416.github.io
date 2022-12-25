@@ -145,7 +145,7 @@ public void withoutTryCatchResources() {
 ```
 
 ```java
-// before java 7!
+// after java 7!
 public void tryCatchResources() {
     try (FileInputStream fis = new FileInputStream("file.txt")) {
         // 파일을 읽는 어떠한 작업 중..
