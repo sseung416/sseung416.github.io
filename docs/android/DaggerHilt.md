@@ -1,6 +1,6 @@
 ---
 layout: default
-title: RecyclerView
+title: DaggerHilt
 parent: Android
 ---
 
