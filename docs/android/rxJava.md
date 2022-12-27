@@ -4,6 +4,10 @@
 
 ### Observable
 
+- onNext() : 하나씩 순차적으로 데이터를 발행한다~
+- onComplete() : 데이터 발행 끝남, onNext() 더 이상 호출 안 함
+- onError() : 오류 발생
+
 
 ## Observable의 확장
 ### Single
@@ -14,6 +18,8 @@ Observable의 또 다른 형태로, **한 개**의 데이터나 에러만을 발
 
 ### Maybe
 한 개의 데이터만 발행한다는 점에서 Single과 유사하지만, **onComplete()** 메서드가 존재함
+**데이터를 발행하지 않고도 컴플리트 시키기 가능!!**
+
 - **onSuccess**, **onError**, **onComplete** 3가지 알림이 있음
 - 데이터를 1개도 통지하지 않고 종료했을 때 onComplete 메서드를 호출함
 
