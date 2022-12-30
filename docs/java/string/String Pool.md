@@ -44,7 +44,10 @@ String str3 = "banana";
 String str4 = new String("banana");
 ```
 
-![image](image1.png)
+<div style="text-align: center;">
+    <img src="image1.png" alt="image" width="500"/>
+</div>
+
 
 처음 `str1`의 apple 값은 기존 String Pool에 없는 값이니 **새로운 값을 생성해 주소를 할당**한다.  
 `str2`의 경우, 이미 str1에서 apple 값을 String Pool에 주소를 할당했기 때문에 str2는 주소값을 새로 할당받지 않고 기존의 주소값을 받게 된다.  
@@ -78,9 +81,11 @@ System.out.println(str1.equals(str2)); // true
 위의 예제를 보면, str1과 연산 후 str2의 값이 같은데도 == 연산자로 비교 시 false를 출력한다.  
 이는 **두 String 객체가 다른 주소값을 가리키고 있다**는 것으로 알 수 있다.  
 
-그 이유는 앞서 설명했듯이 String은 Immutable의 성격이라 값을 연산 시 기존의 메모리는 남겨두고 새 메모리를 할당받아 새 값을 초기화하기 때문이다.
+<div style="text-align: center;">
+    <img src="image2.png" alt="image" width="500"/>
+</div>
 
-<!-- TODO: 그림 자료 첨부하기 -->
+따라서 String 값이 빈번하게 변화하는 상황에서는 == 연산자로 비교하면 안 된다! String 값이 같은지 확인해야는 상황에서는 반드시 `equals()` 메서드를 사용해 안정성을 보장하도록 하자.
 
 
 <br/>
