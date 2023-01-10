@@ -1,7 +1,7 @@
 ---
 title: Home
 layout: default
-nav-order: 2
+nav-order: 1
 ---
 
 열공하자

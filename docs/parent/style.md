@@ -2,6 +2,8 @@
 layout: default
 title: style
 parent: Android
+has_children: true
+permalink: /docs/android/style
 nav_order: 2
 ---
 

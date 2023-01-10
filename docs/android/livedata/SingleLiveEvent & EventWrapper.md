@@ -1,7 +1,8 @@
 ---
 layout: default
-title: 단일 이벤트 처리 - SingleLiveData & EventWrapper
+title: SingleLiveData / EventWrapper
 parent: LiveData
+grand_parent: Android
 ---
 
 # 단일 이벤트 처리: SingleLiveData & EventWrapper

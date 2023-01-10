@@ -2,6 +2,7 @@
 layout: default
 title: Migrate from LiveData to Flow
 parent: Flow
+grand_parent: Android
 ---
 
 # LiveData를 Flow로 마이그레이션 (with DataBinding)
@@ -21,9 +22,9 @@ LiveData와 StateFlow은 유사하다.
 LiveData는 android 종속성을 가지고 있고 UI와 밀접하게 연결되어 있다.
 이는 클린 아키텍쳐 설계 시, 순수 Java/Kotlin 코드만을 사용해야하는 domain layer나 비동기 처리가 활발한 data layer에서 사용하기에는 적합하지 않다.
 
-https://cesarmorigaki.medium.com/replace-singleliveevent-with-kotlin-channel-flow-b983f095a47a
+<!-- https://cesarmorigaki.medium.com/replace-singleliveevent-with-kotlin-channel-flow-b983f095a47a
 
-https://mashup-android.vercel.app/mashup-10th/sehee/coroutines-stateflow-channel/
+https://mashup-android.vercel.app/mashup-10th/sehee/coroutines-stateflow-channel/ -->
 
 <br/>
 
@@ -74,12 +75,12 @@ class MainFragment() : Fragment() {
 }
 ```
 
-### repeatOnLifecycle / launchWhenStarted
+<!-- ### repeatOnLifecycle / launchWhenStarted -->
 
 ### SingleLiveEvent to Channel
 
 SingleLiveEvent의 경우 Channel로 마이그레이션 할 수 있다.
-간단하게 Channel의 개념에 대해 설명하자면, stateFlow와 달리 기본 버퍼 사이즈가 지정되어 있어 그 사이즈 이상의 데이터가 발행되면 ... 무시된다?
+<!-- 간단하게 Channel의 개념에 대해 설명하자면, stateFlow와 달리 기본 버퍼 사이즈가 지정되어 있어 그 사이즈 이상의 데이터가 발행되면 ... 무시된다? -->
 
 ```kotlin
 class MainViewModel : ViewModel() {
@@ -89,6 +90,6 @@ class MainViewModel : ViewModel() {
 }
 ```
 
-### Channel과 sealed class를 이용해 action event 처리하기
+<!-- ### Channel과 sealed class를 이용해 action event 처리하기
 
-## References
+## References -->

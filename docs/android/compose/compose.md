@@ -2,6 +2,8 @@
 layout: default
 title: Compose
 parent: Android
+has_children: true
+permalink: /docs/android/compose
 ---
 
 # Compose
@@ -221,3 +223,32 @@ private fun PauseAndStartToggleButton(
 ```
 
 ---
+
+## Dialog 구현하기
+
+### 기본
+
+간단하게 베이스 다이얼로그 선언하고...
+```kotlin
+@Composable
+fun AppAlertDialog(
+    onDismissRequest: () -> Unit = {},
+    content: @Composable () -> Unit
+) {
+    Dialog(onDismissRequest = onDismissRequest) {
+        content.invoke()
+    }
+}
+```
+
+아래처럼 커스텀한다.
+
+```kotlin
+@Composable
+fun 
+```
+
+
+### Dialog
+
+### Dialog 숨기기
